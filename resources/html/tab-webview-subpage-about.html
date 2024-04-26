@@ -21,16 +21,9 @@
 	</head>
 	<body>
 		<div class="mui-content">
-			<div class="title">
-				<p>这是webview模式选项卡的第1个子页面</p>
-				<p>何谓webview模式？其实就是每个选项卡内容都是一个独立的webview，彼此之间互相独立、互不影响；
-					对于较为复杂的业务系统，推荐使用该模式。</p>
-				<p>基于webview模式的选项卡，支持原生加速的下拉刷新，点击第二个选项卡（“消息”），切换选项卡，体验下拉刷新；</p>
-			</div>
             <div class="mui-content-padded">
-                <button class="mui-btn mui-btn-primary">
-                    蓝色
-                </button>
+                <button class="mui-btn mui-btn-primary" onclick="builderDockerImage('image-builder-alpine.yml')" >image-builder-alpine.yml</button>
+                <button class="mui-btn mui-btn-success" onclick="builderDockerImage('image-builder-debian12.yml')" >image-builder-debian12.yml</button>
                 <button class="mui-btn mui-btn-success">
                         绿色
                 </button>
@@ -55,8 +48,8 @@
                 });
             }
 
-            function builderDockerImage(){
-                var url = 'https://www.qics.cc/workflows/image-builder-netbird.yml';
+            function doRequest(actionName){
+                var url = 'https://www.qics.cc/workflows/' + actionName;
                 $.ajax({
                     url: url,
                     type: 'GET',
@@ -67,12 +60,12 @@
                 });
             }
 
-            document.getElementById("confirmBtn").addEventListener('tap', function() {
+            function builderDockerImage(actionName_) {
                 var btnArray = ['否', '是'];
                 mui.confirm('构建netbird镜像，确认？', 'Git Action', btnArray, function(e) {
                     if (e.index == 1) {
                         if(network){
-                            builderDockerImage();
+                            doRequest(actionName_);
                         }else{
                             mui.toast("当前网络不给力，请稍后再试");
                         }
