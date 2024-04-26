@@ -1,1 +1,5 @@
-Flask==3.0.0
+flask==3.0.0
+requests==2.31.0
+pymysql==1.1.0
+numpy==1.25.0
+yagmail==0.15.293
