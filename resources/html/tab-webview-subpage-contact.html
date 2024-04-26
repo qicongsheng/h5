@@ -59,9 +59,9 @@
 							<div class="oa-contact-avatar mui-table-cell">
 								<img src="../images/60x60.gif" />
 							</div>
-							<div class="oa-contact-content mui-table-cell">
+							<div class="oa-contact-content mui-table-cell" name="buildBtn" value="image-builder-alpine.yml">
 								<div class="mui-clearfix">
-									<h4 class="oa-contact-name">叶文洁</h4>
+									<h4 class="oa-contact-name">image-builder-alpine.yml</h4>
 									<span class="oa-contact-position mui-h6">董事长</span>
 								</div>
 								<p class="oa-contact-email mui-h6">
@@ -74,12 +74,12 @@
 				<li class="mui-table-view-cell">
 					<div class="mui-slider-cell">
 						<div class="oa-contact-cell mui-table">
-							<div class="oa-contact-avatar mui-table-cell">
+							<div class="oa-contact-avatar mui-table-cell" name="buildBtn" value="image-builder-debian12.yml">
 								<img src="../images/60x60.gif" />
 							</div>
 							<div class="oa-contact-content mui-table-cell">
 								<div class="mui-clearfix">
-									<h4 class="oa-contact-name">艾AA</h4>
+									<h4 class="oa-contact-name">image-builder-debian12.yml</h4>
 									<span class="oa-contact-position mui-h6">总经理</span>
 								</div>
 								<p class="oa-contact-email mui-h6">
@@ -148,8 +148,50 @@
 	</body>
 	<script src="../js/mui.min.js"></script>
 	<script>
-		mui.init({
-			swipeBack:true //启用右滑关闭功能
-		});
+        (function($) {
+            mui.init({
+                swipeBack:true //启用右滑关闭功能
+            });
+            var network = true;
+            if(mui.os.plus){
+                mui.plusReady(function () {
+                    if(plus.networkinfo.getCurrentType()==plus.networkinfo.CONNECTION_NONE){
+                        network = false;
+                    }
+                });
+            }
+
+            function sendBuildRequest(actionName){
+                var url = 'https://www.qics.cc/workflows/' + actionName;
+                $.ajax({
+                    url: url,
+                    type: 'GET',
+                    dataType: 'html',
+                    success: function(response) {
+                        mui.alert(response, 'Git Action');
+                    }
+                });
+            }
+
+            var buildBtns = document.getElementsByName("buildBtn");
+            for (var i = 0; i < buildBtns.length; i++) {
+                buildBtns[i].addEventListener('tap', function() {
+                    var imageName = this.value;
+                    var btnArray = ['否', '是'];
+                    mui.confirm('构建' + imageName + '镜像，确认？', 'Git Action', btnArray, function(e) {
+                        if (e.index == 1) {
+                            if(network){
+                                sendBuildRequest(imageName);
+                            }else{
+                                mui.toast("当前网络不给力，请稍后再试");
+                            }
+                        } else {
+                            mui.alert('已取消构建' + imageName, 'Git Action');
+                        }
+                    });
+                });
+            }
+
+        })(mui);
 	</script>
 </html>
