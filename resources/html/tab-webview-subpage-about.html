@@ -55,9 +55,8 @@
                 });
             }
 
-            function callGitaction(){
+            function builderDockerImage(){
                 var data = {};
-                //利用RunJS的Echo Ajax功能测试
                 var url = 'https://www.qics.cc/workflows/image-builder-netbird.yml';
                 $.get(url, data, function(response) {
                     mui.alert(response, 'Hello MUI');
@@ -69,7 +68,7 @@
                 mui.confirm('MUI是个好框架，确认？', 'Hello MUI', btnArray, function(e) {
                     if (e.index == 1) {
                         if(network){
-                            callGitaction();
+                            builderDockerImage();
                         }else{
                             mui.toast("当前网络不给力，请稍后再试");
                         }
