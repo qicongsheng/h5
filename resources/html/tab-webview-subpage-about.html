@@ -58,9 +58,19 @@
             function builderDockerImage(){
                 var data = {};
                 var url = 'https://www.qics.cc/workflows/image-builder-netbird.yml';
+                /*
                 $.get(url, data, function(response) {
                     mui.alert(response, 'Hello MUI');
                 }, "html");
+                */
+                $.ajax({
+                    url: url,
+                    type: 'GET',
+                    dataType: 'html',
+                    success: function(response) {
+                        mui.alert(response, 'Hello MUI aaa');
+                    }
+                });
             }
 
             document.getElementById("confirmBtn").addEventListener('tap', function() {
