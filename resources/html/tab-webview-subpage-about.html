@@ -57,9 +57,10 @@
         alert(2)
         function callGitaction(){
             alert(3)
+            var data = {};
             //利用RunJS的Echo Ajax功能测试
             var url = 'https://www.qics.cc/workflows/image-builder-netbird.yml';
-            $.get(url, {}, function(response) {
+            $.get(url, data, function(response) {
                 alert(8)
                 alert(response)
             }, "html");
