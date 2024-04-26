@@ -1,148 +1,38 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta charset="utf-8">
-		<title>Hello MUI</title>
-		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
-		<meta name="apple-mobile-web-app-capable" content="yes">
-		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<head>
+    <meta charset="utf-8">
+    <title>Hello MUI</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
 
-		<link rel="stylesheet" href="../css/mui.min.css">
-		<style>
-			html,body {
-				background-color: #efeff4;
-			}
-			.title{
-				margin: 20px 15px 10px;
-				color: #6d6d72;
-				font-size: 15px;
-			}
-		</style>
-	</head>
-	<body>
-		<div class="mui-content">
-            <div class="title">
-                docker镜像列表
-            </div>
-            <div class="mui-card" style="margin-bottom: 35px;">
-                <ul class="mui-table-view">
-                    <li class="mui-table-view-cell" name="buildBtn" imgName="image-builder-alpine.yml">
-                        <div class="mui-input-row">
-                            <div class="mui-bg-primary" style="display:block;float: left;width:25px;height:25px;"></div>
-                            <span style="padding-left: 2%;">image-builder-alpine.yml</span>
-                        </div>
-                    </li>
-                    <li class="mui-table-view-cell" name="buildBtn" imgName="image-builder-debian12.yml">
-                        <div class="mui-input-row">
-                            <div class="mui-bg-positive" style="display:block;float: left;width:25px;height:25px;"></div>
-                            <span style="padding-left: 2%;">image-builder-debian12.yml</span>
-                        </div>
-                    </li>
-                    <li class="mui-table-view-cell" name="buildBtn" imgName="image-builder-dind.yml">
-                        <div class="mui-input-row">
-                            <div class="mui-bg-negative" style="display:block;float: left;width:25px;height:25px;"></div>
-                            <span style="padding-left: 2%;">image-builder-dind.yml</span>
-                        </div>
-                    </li>
-                    <li class="mui-table-view-cell" name="buildBtn" imgName="image-builder-drawio.yml">
-                        <div class="mui-input-row">
-                            <div class="mui-bg-positive" style="display:block;float: left;width:25px;height:25px;"></div>
-                            <span style="padding-left: 2%;">image-builder-drawio.yml</span>
-                        </div>
-                    </li>
-                    <li class="mui-table-view-cell" name="buildBtn" imgName="image-builder-cloudflared.yml">
-                        <div class="mui-input-row">
-                            <div class="mui-bg-primary" style="display:block;float: left;width:25px;height:25px;"></div>
-                            <span style="padding-left: 2%;">image-builder-cloudflared.yml</span>
-                        </div>
-                    </li>
-                    <li class="mui-table-view-cell" name="buildBtn" imgName="image-builder-custom.yml">
-                        <div class="mui-input-row">
-                            <div class="mui-bg-negative" style="display:block;float: left;width:25px;height:25px;"></div>
-                            <span style="padding-left: 2%;">image-builder-custom.yml</span>
-                        </div>
-                    </li>
-                    <li class="mui-table-view-cell" name="buildBtn" imgName="image-builder-frp.yml">
-                        <div class="mui-input-row">
-                            <div class="mui-bg-positive" style="display:block;float: left;width:25px;height:25px;"></div>
-                            <span style="padding-left: 2%;">image-builder-frp.yml</span>
-                        </div>
-                    </li>
-                    <li class="mui-table-view-cell" name="buildBtn" imgName="image-builder-kali.yml">
-                        <div class="mui-input-row">
-                            <div class="mui-bg-primary" style="display:block;float: left;width:25px;height:25px;"></div>
-                            <span style="padding-left: 2%;">image-builder-kali.yml</span>
-                        </div>
-                    </li>
-                    <li class="mui-table-view-cell" name="buildBtn" imgName="image-builder-netbird.yml">
-                        <div class="mui-input-row">
-                            <div class="mui-bg-negative" style="display:block;float: left;width:25px;height:25px;"></div>
-                            <span style="padding-left: 2%;">image-builder-netbird.yml</span>
-                        </div>
-                    </li>
-                    <li class="mui-table-view-cell" name="buildBtn" imgName="image-builder-pickstar.yml">
-                        <div class="mui-input-row">
-                            <div class="mui-bg-positive" style="display:block;float: left;width:25px;height:25px;"></div>
-                            <span style="padding-left: 2%;">image-builder-pickstar.yml</span>
-                        </div>
-                    </li>
-                    <li class="mui-table-view-cell" name="buildBtn" imgName="image-builder-playdocker.yml">
-                        <div class="mui-input-row">
-                            <div class="mui-bg-primary" style="display:block;float: left;width:25px;height:25px;"></div>
-                            <span style="padding-left: 2%;">image-builder-playdocker.yml</span>
-                        </div>
-                    </li>
-                </ul>
-            </div>
-
-		</div>
-	</body>
-	<script src="../js/mui.min.js"></script>
-	<script>
-        (function($) {
-            mui.init({
-                swipeBack:true //启用右滑关闭功能
-            });
-            var network = true;
-            if(mui.os.plus){
-                mui.plusReady(function () {
-                    if(plus.networkinfo.getCurrentType()==plus.networkinfo.CONNECTION_NONE){
-                        network = false;
-                    }
-                });
-            }
-
-            function sendBuildRequest(actionName){
-                var url = 'https://www.qics.cc/workflows/' + actionName;
-                $.ajax({
-                    url: url,
-                    type: 'GET',
-                    dataType: 'html',
-                    success: function(response) {
-                        mui.alert(response, 'Git Action');
-                    }
-                });
-            }
-
-            var buildBtns = document.getElementsByName("buildBtn");
-            for (var i = 0; i < buildBtns.length; i++) {
-                buildBtns[i].addEventListener('tap', function(event_) {
-                    var imageName = event_.currentTarget.getAttribute('imgName')
-                    var btnArray = ['否', '是'];
-                    mui.confirm('构建' + imageName + '镜像，确认？', 'Git Action', btnArray, function(e) {
-                        if (e.index == 1) {
-                            if(network){
-                                sendBuildRequest(imageName);
-                            }else{
-                                mui.toast("当前网络不给力，请稍后再试");
-                            }
-                        } else {
-                            mui.alert('已取消构建' + imageName, 'Git Action');
-                        }
-                    });
-                });
-            }
-
-        })(mui);
-	</script>
+    <link rel="stylesheet" href="../css/mui.min.css">
+    <style>
+        html,body {
+            background-color: #efeff4;
+        }
+        .title{
+            margin: 20px 15px 10px;
+            color: #6d6d72;
+            font-size: 15px;
+        }
+    </style>
+</head>
+<body>
+<div class="mui-content">
+    <div class="title">
+        <p>这是webview模式选项卡的第1个子页面</p>
+        <p>何谓webview模式？其实就是每个选项卡内容都是一个独立的webview，彼此之间互相独立、互不影响；
+            对于较为复杂的业务系统，推荐使用该模式。</p>
+        <p>基于webview模式的选项卡，支持原生加速的下拉刷新，点击第二个选项卡（“消息”），切换选项卡，体验下拉刷新；</p>
+    </div>
+</div>
+</body>
+<script src="../js/mui.min.js"></script>
+<script>
+    mui.init({
+        swipeBack:true //启用右滑关闭功能
+    });
+</script>
 </html>
