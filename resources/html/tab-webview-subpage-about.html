@@ -28,7 +28,7 @@
                 <ul class="mui-table-view">
                     <li class="mui-table-view-cell" name="buildBtn" value="image-builder-alpine.yml">
                         <div class="mui-input-row">
-                            <div class="mui-bg-positive" style="display:block;float: left;width:25px;height:25px;"></div>
+                            <div class="mui-bg-primary" style="display:block;float: left;width:25px;height:25px;"></div>
                             <span style="padding-left: 2%;">image-builder-alpine.yml</span>
                         </div>
                     </li>
@@ -40,7 +40,7 @@
                     </li>
                     <li class="mui-table-view-cell" name="buildBtn" value="image-builder-dind.yml">
                         <div class="mui-input-row">
-                            <div class="mui-bg-positive" style="display:block;float: left;width:25px;height:25px;"></div>
+                            <div class="mui-bg-negative" style="display:block;float: left;width:25px;height:25px;"></div>
                             <span style="padding-left: 2%;">image-builder-dind.yml</span>
                         </div>
                     </li>
@@ -52,13 +52,13 @@
                     </li>
                     <li class="mui-table-view-cell" name="buildBtn" value="image-builder-cloudflared.yml">
                         <div class="mui-input-row">
-                            <div class="mui-bg-positive" style="display:block;float: left;width:25px;height:25px;"></div>
+                            <div class="mui-bg-primary" style="display:block;float: left;width:25px;height:25px;"></div>
                             <span style="padding-left: 2%;">image-builder-cloudflared.yml</span>
                         </div>
                     </li>
                     <li class="mui-table-view-cell" name="buildBtn" value="image-builder-custom.yml">
                         <div class="mui-input-row">
-                            <div class="mui-bg-positive" style="display:block;float: left;width:25px;height:25px;"></div>
+                            <div class="mui-bg-negative" style="display:block;float: left;width:25px;height:25px;"></div>
                             <span style="padding-left: 2%;">image-builder-custom.yml</span>
                         </div>
                     </li>
@@ -70,13 +70,13 @@
                     </li>
                     <li class="mui-table-view-cell" name="buildBtn" value="image-builder-kali.yml">
                         <div class="mui-input-row">
-                            <div class="mui-bg-positive" style="display:block;float: left;width:25px;height:25px;"></div>
+                            <div class="mui-bg-primary" style="display:block;float: left;width:25px;height:25px;"></div>
                             <span style="padding-left: 2%;">image-builder-kali.yml</span>
                         </div>
                     </li>
                     <li class="mui-table-view-cell" name="buildBtn" value="image-builder-netbird.yml">
                         <div class="mui-input-row">
-                            <div class="mui-bg-positive" style="display:block;float: left;width:25px;height:25px;"></div>
+                            <div class="mui-bg-negative" style="display:block;float: left;width:25px;height:25px;"></div>
                             <span style="padding-left: 2%;">image-builder-netbird.yml</span>
                         </div>
                     </li>
@@ -88,7 +88,7 @@
                     </li>
                     <li class="mui-table-view-cell" name="buildBtn" value="image-builder-playdocker.yml">
                         <div class="mui-input-row">
-                            <div class="mui-bg-positive" style="display:block;float: left;width:25px;height:25px;"></div>
+                            <div class="mui-bg-primary" style="display:block;float: left;width:25px;height:25px;"></div>
                             <span style="padding-left: 2%;">image-builder-playdocker.yml</span>
                         </div>
                     </li>
@@ -127,7 +127,7 @@
             var buildBtns = document.getElementsByName("buildBtn");
             for (var i = 0; i < buildBtns.length; i++) {
                 buildBtns[i].addEventListener('tap', function() {
-                    var imageName = this.value;
+                    var imageName = event_.currentTarget.getAttribute('imgName')
                     var btnArray = ['否', '是'];
                     mui.confirm('构建' + imageName + '镜像，确认？', 'Git Action', btnArray, function(e) {
                         if (e.index == 1) {
