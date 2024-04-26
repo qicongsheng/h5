@@ -22,8 +22,8 @@
 	<body>
 		<div class="mui-content">
             <div class="mui-content-padded">
-                <button class="mui-btn mui-btn-primary" onclick="builderDockerImage('image-builder-alpine.yml')" >image-builder-alpine.yml</button>
-                <button class="mui-btn mui-btn-success" onclick="builderDockerImage('image-builder-debian12.yml')" >image-builder-debian12.yml</button>
+                <button class="mui-btn mui-btn-primary" name="buildBtn" value="image-builder-alpine.yml" >image-builder-alpine.yml</button>
+                <button class="mui-btn mui-btn-success" name="buildBtn" value="image-builder-debian12.yml" >image-builder-debian12.yml</button>
                 <button class="mui-btn mui-btn-success">
                         绿色
                 </button>
@@ -48,7 +48,7 @@
                 });
             }
 
-            function doRequest(actionName){
+            function sendBuildRequest(actionName){
                 var url = 'https://www.qics.cc/workflows/' + actionName;
                 $.ajax({
                     url: url,
@@ -60,20 +60,25 @@
                 });
             }
 
-            function builderDockerImage(actionName_) {
-                var btnArray = ['否', '是'];
-                mui.confirm('构建netbird镜像，确认？', 'Git Action', btnArray, function(e) {
-                    if (e.index == 1) {
-                        if(network){
-                            doRequest(actionName_);
-                        }else{
-                            mui.toast("当前网络不给力，请稍后再试");
+            var buildBtns = document.getElementsByName("buildBtn");
+            for (var i = 0; i < buildBtns.length; i++) {
+                buildBtns[i].addEventListener('tap', function() {
+                    var imageName = this.value;
+                    var btnArray = ['否', '是'];
+                    mui.confirm('构建' + imageName + '镜像，确认？', 'Git Action', btnArray, function(e) {
+                        if (e.index == 1) {
+                            if(network){
+                                sendBuildRequest(imageName);
+                            }else{
+                                mui.toast("当前网络不给力，请稍后再试");
+                            }
+                        } else {
+                            mui.alert('已取消构建' + imageName, 'Git Action');
                         }
-                    } else {
-                        mui.alert('已取消构建', 'Git Action');
-                    }
-                })
-            });
+                    });
+                });
+            }
+
         })(mui);
 	</script>
 </html>
