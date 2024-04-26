@@ -59,14 +59,10 @@
 							<div class="oa-contact-avatar mui-table-cell">
 								<img src="../images/60x60.gif" />
 							</div>
-							<div class="oa-contact-content mui-table-cell" name="buildBtn" value="image-builder-alpine.yml">
+							<div class="oa-contact-content mui-table-cell" name="buildBtn" imgName="image-builder-alpine.yml">
 								<div class="mui-clearfix">
 									<h4 class="oa-contact-name">image-builder-alpine.yml</h4>
-									<span class="oa-contact-position mui-h6">董事长</span>
 								</div>
-								<p class="oa-contact-email mui-h6">
-									yewenjie@sina.com
-								</p>
 							</div>
 						</div>
 					</div>
@@ -74,17 +70,13 @@
 				<li class="mui-table-view-cell">
 					<div class="mui-slider-cell">
 						<div class="oa-contact-cell mui-table">
-							<div class="oa-contact-avatar mui-table-cell" name="buildBtn" value="image-builder-debian12.yml">
+							<div class="oa-contact-avatar mui-table-cell">
 								<img src="../images/60x60.gif" />
 							</div>
-							<div class="oa-contact-content mui-table-cell">
+							<div class="oa-contact-content mui-table-cell" name="buildBtn" imgName="image-builder-debian12.yml">
 								<div class="mui-clearfix">
 									<h4 class="oa-contact-name">image-builder-debian12.yml</h4>
-									<span class="oa-contact-position mui-h6">总经理</span>
 								</div>
-								<p class="oa-contact-email mui-h6">
-									aaa@163.com
-								</p>
 							</div>
 						</div>
 					</div>
@@ -176,7 +168,7 @@
             var buildBtns = document.getElementsByName("buildBtn");
             for (var i = 0; i < buildBtns.length; i++) {
                 buildBtns[i].addEventListener('tap', function() {
-                    var imageName = this.value;
+                    var imageName = this.imgName;
                     var btnArray = ['否', '是'];
                     mui.confirm('构建' + imageName + '镜像，确认？', 'Git Action', btnArray, function(e) {
                         if (e.index == 1) {
