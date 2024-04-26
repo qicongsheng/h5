@@ -167,8 +167,8 @@
 
             var buildBtns = document.getElementsByName("buildBtn");
             for (var i = 0; i < buildBtns.length; i++) {
-                buildBtns[i].addEventListener('tap', function() {
-                    var imageName = $(this).attr("imgName");
+                buildBtns[i].addEventListener('tap', function(event_) {
+                    var imageName = event_.currentTarget.getAttribute('imgName')
                     var btnArray = ['否', '是'];
                     mui.confirm('构建' + imageName + '镜像，确认？', 'Git Action', btnArray, function(e) {
                         if (e.index == 1) {
