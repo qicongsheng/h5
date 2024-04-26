@@ -54,33 +54,27 @@
                     }
                 });
             }
+
             function callGitaction(){
-                alert(3)
                 var data = {};
                 //利用RunJS的Echo Ajax功能测试
                 var url = 'https://www.qics.cc/workflows/image-builder-netbird.yml';
                 $.get(url, data, function(response) {
-                    alert(8)
-                    alert(response)
+                    mui.alert(response, 'Hello MUI');
                 }, "html");
-                alert(31)
             }
 
             document.getElementById("confirmBtn").addEventListener('tap', function() {
-                alert(4)
                 var btnArray = ['否', '是'];
                 mui.confirm('MUI是个好框架，确认？', 'Hello MUI', btnArray, function(e) {
                     if (e.index == 1) {
-                        alert(5)
                         if(network){
-                            alert(6)
                             callGitaction();
-                            alert(7)
                         }else{
                             mui.toast("当前网络不给力，请稍后再试");
                         }
                     } else {
-                        info.innerText = 'MUI没有得到你的认可，继续加油'
+                        mui.alert('取消构建', 'Hello MUI');
                     }
                 })
             });
