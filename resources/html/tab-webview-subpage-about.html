@@ -21,28 +21,24 @@
 	</head>
 	<body>
 		<div class="mui-content">
-            <h5 class="mui-content-padded">Color</h5>
-            <div class="mui-card">
-                <form class="mui-input-group">
-
-                    <div class="mui-input-row mui-radio" name="buildBtn" value="image-builder-alpine.yml">
-                        <div class="mui-bg-positive" style="display:block;float: left;width:25px;height:25px;"></div>
-                        <span style="padding-left: 2%;">image-builder-alpine.yml</span>
-                    </div>
-
-                    <div class="mui-input-row mui-radio" name="buildBtn" value="image-builder-alpine.yml">
-                        <div class="mui-bg-positive" style="display:block;float: left;width:25px;height:25px;"></div>
-                        <span style="padding-left: 2%;">image-builder-alpine.yml</span>
-                    </div>
-                    <div class="mui-input-row mui-radio" name="buildBtn" value="image-builder-alpine.yml">
-                        <div class="mui-bg-positive" style="display:block;float: left;width:25px;height:25px;"></div>
-                        <span style="padding-left: 2%;">image-builder-alpine.yml</span>
-                    </div>
-                    <div class="mui-input-row mui-radio" name="buildBtn" value="image-builder-alpine.yml">
-                        <div class="mui-bg-positive" style="display:block;float: left;width:25px;height:25px;"></div>
-                        <span style="padding-left: 2%;">image-builder-alpine.yml</span>
-                    </div>
-                </form>
+            <div class="title">
+                docker镜像列表
+            </div>
+            <div class="mui-card" style="margin-bottom: 35px;">
+                <ul class="mui-table-view">
+                    <li class="mui-table-view-cell" name="buildBtn" value="image-builder-alpine.yml">
+                        <div class="mui-input-row">
+                            <div class="mui-bg-positive" style="display:block;float: left;width:25px;height:25px;"></div>
+                            <span style="padding-left: 2%;">image-builder-alpine.yml</span>
+                        </div>
+                    </li>
+                    <li class="mui-table-view-cell" name="buildBtn" value="image-builder-debian12.yml">
+                        <div class="mui-input-row">
+                            <div class="mui-bg-positive" style="display:block;float: left;width:25px;height:25px;"></div>
+                            <span style="padding-left: 2%;">image-builder-debian12.yml</span>
+                        </div>
+                    </li>
+                </ul>
             </div>
 
             <div class="mui-content-padded">
