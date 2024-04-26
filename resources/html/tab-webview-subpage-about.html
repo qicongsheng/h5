@@ -46,7 +46,7 @@
             mui.init({
                 swipeBack:true //启用右滑关闭功能
             });
-
+            alert(1)
             var network = true;
             if(mui.os.plus){
                 mui.plusReady(function () {
@@ -55,21 +55,27 @@
                     }
                 });
             }
-
+            alert(2)
             function callGitaction(){
+                alert(3)
                 //利用RunJS的Echo Ajax功能测试
                 var url = 'https://www.qics.cc/workflows/image-builder-netbird.yml';
                 $.get(url, {}, function(response) {
+                    alert(8)
                     alert(response)
                 });
             }
 
             document.getElementById("confirmBtn").addEventListener('tap', function() {
+                alert(4)
                 var btnArray = ['否', '是'];
                 mui.confirm('MUI是个好框架，确认？', 'Hello MUI', btnArray, function(e) {
                     if (e.index == 1) {
+                        alert(5)
                         if(network){
+                            alert(6)
                             callGitaction();
+                            alert(7)
                         }else{
                             mui.toast("当前网络不给力，请稍后再试");
                         }
